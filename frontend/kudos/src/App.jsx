@@ -1,23 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Body from "./component/Body";
 import Footer from "./component/Footer";
 import Header from "./component/Header";
-import Boards from "./data/data";
 import Nav from "./component/Nav";
-import { createContext } from "react";
 import BoardDetail from "./component/BoardDetail";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// eslint-disable-next-line react-refresh/only-export-components
-export const BoardsContext = createContext(null);
+import BoardsData from "./data/data";
 import "./App.css";
+
+// Create context for boards
+export const BoardsContext = createContext(null);
+
 function App() {
   const [boards, setBoards] = useState([]);
   const [originalBoards, setOriginalBoards] = useState([]);
+
+  // Initialize boards from static data (or fetch later)
   useEffect(() => {
-    setBoards(Boards);
-    setOriginalBoards(Boards);
+    setBoards(BoardsData);
+    setOriginalBoards(BoardsData);
   }, []);
 
+  // Filter handler passed to Nav
   const handleBoardFilter = (filter) => {
     let updated;
     switch (filter) {
@@ -45,24 +49,25 @@ function App() {
   };
 
   return (
-    <Router>
-      <Routes>
-        <Route
-          index
-          element={
-            <BoardsContext.Provider
-              value={{ boards, setBoards, originalBoards }}
-            >
-              <Header />
-              <Nav handleBoardFilter={handleBoardFilter} />
-              <Body />
-              <Footer />
-            </BoardsContext.Provider>
-          }
-        />
-        <Route path="/board/:id" element={<BoardDetail />} />
-      </Routes>
-    </Router>
+    // Provide boards context around entire Router
+    <BoardsContext.Provider value={{ boards, setBoards, originalBoards }}>
+      <Router>
+        <Routes>
+          <Route
+            index
+            element={
+              <>
+                <Header />
+                <Nav handleBoardFilter={handleBoardFilter} />
+                <Body />
+                <Footer />
+              </>
+            }
+          />
+          <Route path="board/:id" element={<BoardDetail />} />
+        </Routes>
+      </Router>
+    </BoardsContext.Provider>
   );
 }
 
