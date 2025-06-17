@@ -11,7 +11,7 @@ const Search = () => {
     BoardsObj.setBoards(searched);
   };
   return (
-    <div>
+    <div className="search-container">
       <input
         type="text"
         value={searchFor}

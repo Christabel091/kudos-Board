@@ -1,12 +1,23 @@
 import { Link } from "react-router-dom";
-const Board = (props) => {
+import { BoardsContext } from "../App";
+import { useContext } from "react";
+const Board = ({ board }) => {
+  const BoardsObj = useContext(BoardsContext);
+  let deleteBoard = () => {
+    const newBoard = BoardsObj.boards.filter((curr) => curr.id !== board.id);
+    BoardsObj.setBoards(newBoard);
+    // -----Todo----
+    //  Delete from Database
+  };
   return (
-    <div>
-      <h1>{props.title}</h1>
-      <img src={props.url} />
-      <p>{props.description}</p>
-      <Link to={`/board/${props.id}`}> View details</Link>
-      <button>delete board</button>
+    <div className="board">
+      <div className="board-content">
+        <h1>{board.title}</h1>
+        <img src={board.imageUrl} />
+        <p>{board.description}</p>
+        <Link to={`/board/${board.id}`}> View details</Link>
+        <button onClick={deleteBoard}>delete board</button>
+      </div>
     </div>
   );
 };

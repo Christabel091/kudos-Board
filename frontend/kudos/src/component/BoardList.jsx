@@ -5,16 +5,10 @@ const BoardList = () => {
   const BoardsObj = useContext(BoardsContext);
 
   return (
-    <div>
+    <div className="board-list">
       {console.log("boardlist rendered")}
       {BoardsObj.boards.map((board) => (
-        <Board
-          key={board.id}
-          id={board.id}
-          title={board.title}
-          url={board.imageUrl}
-          description={board.description}
-        />
+        <Board board={board} />
       ))}
     </div>
   );
