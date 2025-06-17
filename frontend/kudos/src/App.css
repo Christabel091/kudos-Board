@@ -41,6 +41,29 @@
   color: #888;
 }
 
-h1{
+h1 {
   columns: green;
+}
+
+.form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  z-index: 100;
+}
+
+.form {
+  width: 90%;
+  max-width: 500px;
+  max-height: 90%;
+  overflow-y: auto;
+  border-radius: 12px;
+  padding: 1.5rem;
+  position: relative;
+  margin-top: 5rem;
+  background-color: aliceblue;
 }

@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { useContext } from "react";
 import { BoardsContext } from "../App";
-import Boards from "../data/data";
 const Search = () => {
   const [searchFor, setSearchFor] = useState("");
   const BoardsObj = useContext(BoardsContext);
-  const originalBoards = [...BoardsObj.boards];
   let displaySearch = () => {
     const searched = BoardsObj.boards.filter((board) =>
       board.title.toLowerCase().includes(searchFor.toLowerCase())
@@ -22,10 +20,8 @@ const Search = () => {
       <button onClick={displaySearch}>Search</button>
       <button
         onClick={() => {
-          BoardsObj.setBoards(originalBoards);
-          {
-            console.log(originalBoards);
-          }
+          BoardsObj.setBoards(BoardsObj.originalBoards);
+          setSearchFor("");
         }}
       >
         Clear

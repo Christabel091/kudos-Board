@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 const Board = (props) => {
   return (
     <div>
       <h1>{props.title}</h1>
       <img src={props.url} />
       <p>{props.description}</p>
-      <button>View Board</button>
+      <Link to={`/board/${props.id}`}> View details</Link>
       <button>delete board</button>
     </div>
   );
