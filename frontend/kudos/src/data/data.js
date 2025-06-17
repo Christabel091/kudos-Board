@@ -1,0 +1,81 @@
+let Boards = [
+  {
+    "id": 1,
+    "imageUrl": "https://picsum.photos/seed/kudos1/200/200",
+    "title": "Team Player Award",
+    "description": "For always stepping up to help teammates and keeping morale high!",
+    "sender": "Alice Johnson",
+    "receiver": "Bob Smith",
+    "date": "2025-06-10T14:32:00Z",
+    "likes": 12,
+    "tags": ["teamwork", "morale"]
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://picsum.photos/seed/kudos2/200/200",
+    "title": "Bug Buster",
+    "description": "For squashing that critical production bug in record time.",
+    "sender": "Carol Nguyen",
+    "receiver": "Dave Lee",
+    "date": "2025-06-11T09:15:00Z",
+    "likes": 8,
+    "tags": ["engineering", "bugfix"]
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://picsum.photos/seed/kudos3/200/200",
+    "title": "Design Dynamo",
+    "description": "For crafting such an amazing new UI that users love.",
+    "sender": "Eliot Patel",
+    "receiver": "Fiona Chen",
+    "date": "2025-06-12T16:47:00Z",
+    "likes": 15,
+    "tags": ["design", "UX"]
+  },
+  {
+    "id": 4,
+    "imageUrl": "https://picsum.photos/seed/kudos4/200/200",
+    "title": "Documentation Hero",
+    "description": "For updating our docs and making onboarding a breeze.",
+    "sender": "George Kim",
+    "receiver": "Hannah Ortiz",
+    "date": "2025-06-13T11:05:00Z",
+    "likes": 7,
+    "tags": ["documentation", "onboarding"]
+  },
+  {
+    "id": 5,
+    "imageUrl": "https://picsum.photos/seed/kudos5/200/200",
+    "title": "Customer Champion",
+    "description": "For going above and beyond to resolve the customer’s issue.",
+    "sender": "Isabel Torres",
+    "receiver": "Jack Wilson",
+    "date": "2025-06-14T08:22:00Z",
+    "likes": 20,
+    "tags": ["support", "customer"]
+  },
+  {
+    "id": 6,
+    "imageUrl": "https://picsum.photos/seed/kudos6/200/200",
+    "title": "Innovator",
+    "description": "For proposing that game‑changing feature and prototyping it!",
+    "sender": "Kelly Brown",
+    "receiver": "Liam Davis",
+    "date": "2025-06-15T13:30:00Z",
+    "likes": 10,
+    "tags": ["innovation", "product"]
+  },
+  {
+    "id": 7,
+    "imageUrl": "https://picsum.photos/seed/kudos7/200/200",
+    "title": "Mentor of the Month",
+    "description": "For consistently guiding new hires and sharing knowledge.",
+    "sender": "Mia Garcia",
+    "receiver": "Noah Martinez",
+    "date": "2025-06-16T10:00:00Z",
+    "likes": 18,
+    "tags": ["mentorship", "leadership"]
+  }
+]
+
+export default Boards;
