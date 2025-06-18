@@ -6,9 +6,6 @@ const { PrismaClient } = require('@prisma/client')
 const randomImageUrl = `https://picsum.photos/seed/${Math.floor(Math.random() * 1000)}/400/300`;
 const prisma = new PrismaClient();
 app.use(cors({ origin: 'http://localhost:5173' }));
-app.get('/', (req, res) => {
-    res.json({"hi": 'Christael'})
-})
 
 app.get('/boards', async (req, res) => {
   const Boards = await prisma.boards.findMany()
