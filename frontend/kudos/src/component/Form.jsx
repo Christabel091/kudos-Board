@@ -29,13 +29,16 @@ let Form = (props) => {
     setError("");
     props.setCanShowForm(false);
     try {
-      const response = await fetch("http://localhost:3000/boards", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://kudos-board-9gir.onrender.com/boards",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const result = await response.json();
       BoardsObj.setBoards([...BoardsObj.boards, result]);

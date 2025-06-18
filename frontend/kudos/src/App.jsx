@@ -18,7 +18,9 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/boards");
+        const response = await fetch(
+          "https://kudos-board-9gir.onrender.com/boards"
+        );
         const Boards = await response.json();
         setBoards(Boards);
         setOriginalBoards(Boards);
