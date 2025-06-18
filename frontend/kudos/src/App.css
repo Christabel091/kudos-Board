@@ -1,46 +1,204 @@
-#root {
+/* Root container */
+n#root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f4ff 0%, #e0e8ff 100%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #ddd;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.header img {
+  height: auto;
+  width: 150px;
+  transition: transform 0.3s;
+}
+.header img:hover {
+  transform: rotate(20deg);
+}
+
+/* Search Component */
+.search-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.search-container input[type="text"] {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 2rem;
+  width: 200px;
+  transition: border-color 0.3s;
+}
+.search-container input[type="text"]:focus {
+  outline: none;
+  border-color: #ff9a9e;
+}
+
+/* Navigation buttons */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin: 2rem 0;
+  animation: fadeInUp 0.6s ease;
+}
+button {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 2rem;
+  background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 100%);
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s, transform 0.2s;
+}
+button:hover {
+  background: linear-gradient(45deg, #f6d365 0%, #fda085 100%);
+  transform: translateY(-2px);
+}
+.board-list {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+  justify-items: center;
+  animation: fadeIn 0.8s ease-in;
+}
+
+.board {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.board:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.board img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+.board-content {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.board-content h1 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.board-content p {
+  flex: 1;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+/* Footer */
+footer {
+  padding: 2rem 0;
   text-align: center;
+  color: #777;
+  border-top: 1px solid #ddd;
+  animation: fadeInUp 0.6s ease;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (max-width: 768px) {
+  .search-container input[type="text"] {
+    width: 150px;
+  }
+  .nav button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  main {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }
 
-.card {
-  padding: 2em;
+@media (max-width: 480px) {
+  header,
+  .nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .search-container input[type="text"] {
+    width: 100%;
+  }
+  .nav button {
+    width: 100%;
+  }
+  main {
+    grid-template-columns: 1fr;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+/* form styling */
+.form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  z-index: 100;
 }
 
-h1{
-  columns: green;
+.form {
+  width: 90%;
+  max-width: 500px;
+  max-height: 90%;
+  overflow-y: auto;
+  border-radius: 12px;
+  padding: 1.5rem;
+  position: relative;
+  margin-top: 5rem;
+  background: linear-gradient(135deg, #f0f4ff 0%, #e0e8ff 100%);
 }
