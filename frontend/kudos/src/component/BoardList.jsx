@@ -6,9 +6,8 @@ const BoardList = () => {
 
   return (
     <div className="board-list">
-      {console.log("boardlist rendered")}
       {BoardsObj.boards.map((board) => (
-        <Board board={board} />
+        <Board key={board.id} board={board} />
       ))}
     </div>
   );

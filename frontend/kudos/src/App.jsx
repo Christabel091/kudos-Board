@@ -5,7 +5,6 @@ import Footer from "./component/Footer";
 import Header from "./component/Header";
 import Nav from "./component/Nav";
 import BoardDetail from "./component/BoardDetail";
-import BoardsData from "./data/data";
 import "./App.css";
 
 // Create context for boards
@@ -17,8 +16,17 @@ function App() {
 
   // Initialize boards from static data (or fetch later)
   useEffect(() => {
-    setBoards(BoardsData);
-    setOriginalBoards(BoardsData);
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/boards");
+        const Boards = await response.json();
+        setBoards(Boards);
+        setOriginalBoards(Boards);
+      } catch (error) {
+        console.log("an error occoured");
+      }
+    };
+    fetchData();
   }, []);
 
   // Filter handler passed to Nav

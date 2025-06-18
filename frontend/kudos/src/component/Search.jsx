@@ -6,17 +6,24 @@ const Search = () => {
   const BoardsObj = useContext(BoardsContext);
   let displaySearch = () => {
     const searched = BoardsObj.boards.filter((board) =>
-      board.title.toLowerCase().includes(searchFor.toLowerCase())
+      board.Name.toLowerCase().includes(searchFor.toLowerCase())
     );
     BoardsObj.setBoards(searched);
   };
+  let searchForByInput = (e) => {
+    let val = e.target.value;
+    console.log(val);
+    setSearchFor(val);
+    if (val.trim() === "") {
+      BoardsObj.setBoards(BoardsObj.originalBoards);
+      setSearchFor("");
+    } else {
+      displaySearch();
+    }
+  };
   return (
     <div className="search-container">
-      <input
-        type="text"
-        value={searchFor}
-        onChange={(event) => setSearchFor(event.target.value)}
-      />
+      <input type="text" value={searchFor} onChange={searchForByInput} />
       <button onClick={displaySearch}>Search</button>
       <button
         onClick={() => {
