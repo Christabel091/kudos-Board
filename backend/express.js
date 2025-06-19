@@ -42,6 +42,24 @@ app.get('/boards/cards/:boardId', async(req, res) => {
   }
 })
 
+app.post('/boards/cards/:boardId', async (req, res) => {
+  try {
+    const {  BoardId, title, description, author } = req.body
+  const newCard = await prisma.card.create({
+    data: {
+       board:{connect:{id:Number(BoardId)}}
+       , title, description, author
+    }
+  })
+  console.log(newCard)
+  res.json(newCard)
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+
+ 
 app.delete('/boards/:id', async (req, res) => {
   const { id } = req.params
   const deletedBoards = await prisma.boards.delete({

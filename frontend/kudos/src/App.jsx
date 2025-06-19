@@ -33,24 +33,25 @@ function App() {
 
   // Filter handler passed to Nav
   const handleBoardFilter = (filter) => {
+    console.log(filter);
     let updated;
     switch (filter) {
       case "all":
         updated = originalBoards;
         break;
-      case "recent":
+      case "Recent":
         updated = [...originalBoards].sort(
-          (a, b) => new Date(b.date) - new Date(a.date)
+          (a, b) => new Date(a.date) - new Date(b.date)
         );
         break;
       case "celeb":
-        updated = originalBoards.filter((b) => b.category === "celebration");
+        updated = originalBoards.filter((b) => b.category === "celeb");
         break;
-      case "thanks":
-        updated = originalBoards.filter((b) => b.category === "thank you");
+      case "Thanks":
+        updated = originalBoards.filter((b) => b.category === "thanks");
         break;
       case "inspo":
-        updated = originalBoards.filter((b) => b.tags.includes("innovation"));
+        updated = originalBoards.filter((b) => b.category === "inspo");
         break;
       default:
         updated = originalBoards;
