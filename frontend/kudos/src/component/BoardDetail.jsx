@@ -1,11 +1,16 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { BoardsContext } from "../App";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import CardForm from "./CardForm";
 import Card from "./Card";
 const BoardDetail = () => {
+  const navigate = useNavigate();
   const [cards, setCards] = useState([]);
+  const [selectedGif, setSelectedGif] = useState("");
+  const [canSeeFormCard, setCanSeeFormCard] = useState(false);
   const BoardsObj = useContext(BoardsContext);
   const { id } = useParams();
   const [board] = BoardsObj.boards.filter((board) => board.id === Number(id));
@@ -13,7 +18,8 @@ const BoardDetail = () => {
     const fetchCards = async () => {
       try {
         const response = await fetch(
-          `https://kudos-board-9gir.onrender.com/boards/cards/${id}`
+          `http://localhost:3000/boards/cards/${id}`
+          // `https://kudos-board-9gir.onrender.com/boards/cards/${id}`
         );
         const fetchedCards = await response.json();
         setCards(fetchedCards);
@@ -23,16 +29,30 @@ const BoardDetail = () => {
     };
 
     fetchCards();
-  }, [id]);
+  }, []);
+  const createCard = () => {
+    setCanSeeFormCard(true);
+  };
 
   return (
     <div>
+      <button onClick={() => navigate("/")}>Back</button>
       <h1>{board.Name}</h1>
-      <button> Create a card</button>
+      <button onClick={createCard}> Create a card</button>
+      {canSeeFormCard && (
+        <CardForm
+          setCanSeeFormCard={setCanSeeFormCard}
+          id={id}
+          cards={cards}
+          setCards={setCards}
+          selectedGif={selectedGif}
+          setSelectedGif={setSelectedGif}
+        />
+      )}
       {cards.map((card) => {
-        {
-          <Card card={card} />;
-        }
+        return (
+          <Card key={card.id} card={card} cards={cards} setCards={setCards} />
+        );
       })}
     </div>
   );

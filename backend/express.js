@@ -42,6 +42,29 @@ app.get('/boards/cards/:boardId', async(req, res) => {
   }
 })
 
+app.post('/boards/cards/:boardId', async (req, res) => {
+  try {
+    const {  BoardId, title, description, author, gifUrl } = req.body
+    const newCard = await prisma.card.create({
+    data: {
+       board:{connect:{id:Number(BoardId)}}
+       , title, description, author, gifUrl
+    }
+  })
+    res.json(newCard)
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+app.delete('/boards/cards/:id', async (req, res) => {
+  const { id } = req.params
+  const deletedCard = await prisma.card.delete({
+    where: { id: parseInt(id) }
+  })
+  res.json(deletedCard)
+})
+ 
 app.delete('/boards/:id', async (req, res) => {
   const { id } = req.params
   const deletedBoards = await prisma.boards.delete({
@@ -49,6 +72,8 @@ app.delete('/boards/:id', async (req, res) => {
   })
   res.json(deletedBoards)
 })
+
+
 const PORT = process.env.PORT;
 app.listen(PORT, ()=>{
     console.log(`Port running on ${PORT}`);

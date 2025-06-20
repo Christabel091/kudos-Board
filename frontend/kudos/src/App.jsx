@@ -12,6 +12,7 @@ export const BoardsContext = createContext(null);
 
 function App() {
   const [boards, setBoards] = useState([]);
+  const [firstTime, setFirstTime] = useState(false);
   const [originalBoards, setOriginalBoards] = useState([]);
 
   // Initialize boards from static data (or fetch later)
@@ -19,9 +20,13 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://kudos-board-9gir.onrender.com/boards"
+          "http://localhost:3000/boards/"
+          // "https://kudos-board-9gir.onrender.com/boards"
         );
         const Boards = await response.json();
+        if (!Boards) {
+          setFirstTime(true);
+        }
         setBoards(Boards);
         setOriginalBoards(Boards);
       } catch (error) {
@@ -31,26 +36,26 @@ function App() {
     fetchData();
   }, []);
 
-  // Filter handler passed to Nav
   const handleBoardFilter = (filter) => {
     let updated;
+    console.log(originalBoards);
     switch (filter) {
       case "all":
         updated = originalBoards;
         break;
-      case "recent":
+      case "Recent":
         updated = [...originalBoards].sort(
-          (a, b) => new Date(b.date) - new Date(a.date)
+          (a, b) => new Date(a.date) - new Date(b.date)
         );
         break;
       case "celeb":
-        updated = originalBoards.filter((b) => b.category === "celebration");
+        updated = originalBoards.filter((b) => b.category === "celeb");
         break;
-      case "thanks":
-        updated = originalBoards.filter((b) => b.category === "thank you");
+      case "Thanks":
+        updated = originalBoards.filter((b) => b.category === "thanks");
         break;
       case "inspo":
-        updated = originalBoards.filter((b) => b.tags.includes("innovation"));
+        updated = originalBoards.filter((b) => b.category === "inspiration");
         break;
       default:
         updated = originalBoards;

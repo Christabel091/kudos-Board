@@ -30,7 +30,8 @@ let Form = (props) => {
     props.setCanShowForm(false);
     try {
       const response = await fetch(
-        "https://kudos-board-9gir.onrender.com/boards",
+        "http://localhost:3000/boards/",
+        // "https://kudos-board-9gir.onrender.com/boards",
         {
           method: "POST",
           headers: {
@@ -50,7 +51,7 @@ let Form = (props) => {
   return (
     <div className="form-overlay">
       <form className="form">
-        <button>X</button>
+        <button onClick={() => props.setCanShowForm(false)}>X</button>
         <h1>Create a new playlist</h1>
         <label>Name:</label>
         <input
@@ -64,7 +65,7 @@ let Form = (props) => {
           <option value={""}>Select a categpru</option>
           <option value={"celeb"}>Celebration</option>
           <option value={"thanks"}>Thank you</option>
-          <option value={"ins[iration"}>Inspiration</option>
+          <option value={"inspiration"}>Inspiration</option>
         </select>
         <label>Author</label>
         <input
