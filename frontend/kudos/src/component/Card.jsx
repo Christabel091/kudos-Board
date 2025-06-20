@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const Card = ({ card, cards, setCards }) => {
-  const [count, setCount] = useState(0);
+const Card = ({ card, cards, setCards, count, setCount}) => {
   const deleteCard = async () => {
     const newCards = cards.filter((thisCard) => thisCard.id != card.id);
     setCards(newCards);
@@ -17,6 +16,33 @@ const Card = ({ card, cards, setCards }) => {
       }
     } catch (error) {}
   };
+  useEffect(() => {
+    const formData = {
+      upVote: count
+    };
+    const updateUpvotes = async (card) => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/boards/cards/${card.id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
+        );
+        if (!response.ok) {
+          console.log("failed to update from database");
+        }
+
+        const result = await response.json();
+        setCount(result.upVote);
+      } catch (error) {}
+    }
+    updateUpvotes();
+  }, [count])
+
   return (
     <div className="card-list">
       <div className="card">
@@ -29,7 +55,7 @@ const Card = ({ card, cards, setCards }) => {
               setCount(count + 1);
             }}
           >
-            {"upvote: " + count}
+            {"upvote: " + card.upVote}
           </button>
           <button onClick={deleteCard}>delete card</button>
         </div>

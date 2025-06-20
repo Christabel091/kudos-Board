@@ -57,14 +57,25 @@ app.post('/boards/cards/:boardId', async (req, res) => {
   }
 })
 
+app.put('/boards/cards/:id', async (req, res) => {
+  const { id } = req.params.id;
+  const {upVote} = req.body;
+  const updatedCard = await prisma.card.update({
+    where: { id: parseInt(id) },
+    data: { upVote: upVote + 1 }
+  })
+  res.json(updatedCard)
+
+})
 app.delete('/boards/cards/:id', async (req, res) => {
-  const { id } = req.params
+  const { id } = req.params;
+
   const deletedCard = await prisma.card.delete({
     where: { id: parseInt(id) }
   })
   res.json(deletedCard)
 })
- 
+
 app.delete('/boards/:id', async (req, res) => {
   const { id } = req.params
   const deletedBoards = await prisma.boards.delete({

@@ -9,7 +9,6 @@ import "./App.css";
 
 // Create context for boards
 export const BoardsContext = createContext(null);
-
 function App() {
   const [boards, setBoards] = useState([]);
   const [firstTime, setFirstTime] = useState(false);
@@ -24,17 +23,20 @@ function App() {
           // "https://kudos-board-9gir.onrender.com/boards"
         );
         const Boards = await response.json();
-        if (!Boards) {
-          setFirstTime(true);
-        }
         setBoards(Boards);
         setOriginalBoards(Boards);
+
       } catch (error) {
         console.log("an error occoured");
       }
+      console.log(boards);
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    console.log({boards});
+  }, [boards])
 
   const handleBoardFilter = (filter) => {
     let updated;
@@ -74,7 +76,9 @@ function App() {
               <>
                 <Header />
                 <Nav handleBoardFilter={handleBoardFilter} />
-                <Body />
+              {!boards && <div>  <h1> welcome to kudos</h1></div>}
+               {!firstTime ? <div>  <h1></h1></div>: <Body />}
+              {boards.length === 0? <h1>WELCOME  </h1> : <Body />}
                 <Footer />
               </>
             }

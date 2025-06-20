@@ -1,6 +1,10 @@
 import { useState } from "react";
 import Form from "./Form";
+import { useContext } from "react";
+import { ThemeContext } from "../ThemeProvider";
 const Nav = (props) => {
+  const useTheme = useContext(ThemeContext);
+  const { theme, toggleTheme } = useTheme;
   const [canShowForm, setCanShowForm] = useState(false);
   let CreatePlaylist = () => {
     setCanShowForm(true);
@@ -11,6 +15,9 @@ const Nav = (props) => {
   };
   return (
     <nav className="nav">
+      <div>
+        <button onClick={toggleTheme}> {theme === "light" ? "light mode" : "dark mode"}</button>
+      </div>
       <button value={"all"} onClick={handleFilter}>
         All
       </button>
