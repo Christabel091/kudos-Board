@@ -1,6 +1,7 @@
 import { useState } from "react";
 import GifSearch from "./GifSearch";
 const CardForm = (props) => {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const [cardTitle, setCardTitle] = useState("");
   const [cardDescription, setCardDescription] = useState("");
   const [cardAuthor, setCardAuthor] = useState("");
@@ -27,9 +28,7 @@ const CardForm = (props) => {
     props.setCanSeeFormCard(false);
     try {
       const response = await fetch(
-        `http://localhost:3000/boards/cards/${props.id}`,
-
-        // `https://kudos-board-9gir.onrender.com/boards/cards/${props.id}`,
+        `${baseUrl}/boards/cards/${props.id}`,
         {
           method: "POST",
           headers: {
