@@ -51,7 +51,7 @@ let Form = (props) => {
   return (
     <div className="form-overlay">
       <form className="form">
-        <button onClick={() => props.setCanShowForm(false)}>X</button>
+        <button onClick={() => props.setCanShowForm(false)} className="x">X</button>
         <h1>Create a new playlist</h1>
         <label>Name:</label>
         <input

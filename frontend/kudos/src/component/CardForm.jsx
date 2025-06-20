@@ -13,10 +13,11 @@ const CardForm = (props) => {
       title: cardTitle,
       description: cardDescription,
       gifUrl: props.selectedGif,
+      upVote: props.count,
       author: cardAuthor,
     };
     const isEmptyField = Object.values(formData).some(
-      (val) => val.trim() === ""
+      (val) => typeof val === 'string' && val.trim() === ""
     );
     if (isEmptyField) {
       setError("Please fill in all the fields");

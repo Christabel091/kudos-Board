@@ -21,8 +21,8 @@ model Card{
   title String
   description String
   boardId Int
+  upVote Int @default(0)
   author String?
   gifUrl String?
   board Boards @relation(fields: [boardId], references: [id])
 }
-

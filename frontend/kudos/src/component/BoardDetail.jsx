@@ -12,6 +12,7 @@ const BoardDetail = () => {
   const [selectedGif, setSelectedGif] = useState("");
   const [canSeeFormCard, setCanSeeFormCard] = useState(false);
   const BoardsObj = useContext(BoardsContext);
+  const [count, setCount] = useState(0);
   const { id } = useParams();
   const [board] = BoardsObj.boards.filter((board) => board.id === Number(id));
   useEffect(() => {
@@ -35,10 +36,10 @@ const BoardDetail = () => {
   };
 
   return (
-    <div>
-      <button onClick={() => navigate("/")}>Back</button>
+    <div className="board-detail">
+      <button onClick={() => navigate("/")} className="x">X</button>
       <h1>{board.Name}</h1>
-      <button onClick={createCard}> Create a card</button>
+      <button onClick={createCard} className="create"> Create a card</button>
       {canSeeFormCard && (
         <CardForm
           setCanSeeFormCard={setCanSeeFormCard}
@@ -47,11 +48,21 @@ const BoardDetail = () => {
           setCards={setCards}
           selectedGif={selectedGif}
           setSelectedGif={setSelectedGif}
+          count={count}
         />
       )}
       {cards.map((card) => {
         return (
-          <Card key={card.id} card={card} cards={cards} setCards={setCards} />
+          <Card
+          key={card.id}
+          card={card}
+          cards={cards}
+          setCards={setCards}
+          count={count}
+          setCount={setCount}
+
+          />
+
         );
       })}
     </div>
