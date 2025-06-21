@@ -17,7 +17,14 @@ const CardForm = (props) => {
       upVote: props.count,
       author: cardAuthor,
     };
-    const isEmptyField = Object.values(formData).some(
+    const requiredData = {
+      BoardId: props.id,
+      title: cardTitle,
+      description: cardDescription,
+      gifUrl: props.selectedGif,
+      upVote: props.count,
+    }
+    const isEmptyField = Object.values(requiredData).some(
       (val) => typeof val === 'string' && val.trim() === ""
     );
     if (isEmptyField) {

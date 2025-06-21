@@ -20,8 +20,12 @@ let Form = (props) => {
       category: selectedCategory,
       author: newBoardAuthor,
     };
-    const isEmptyField = Object.values(formData).some(
-      (val) => val.trim() === ""
+    const requiredData = {
+      Name: newBoardName,
+      category: selectedCategory,
+    }
+    const isEmptyField = Object.values(requiredData).some(
+      (val) =>  val.trim() === ""
     );
     if (isEmptyField) {
       setError("Please fill in all the fields");
@@ -70,7 +74,7 @@ let Form = (props) => {
         <label>Author</label>
         <input
           type="text"
-          placeholder="Enter Board name"
+          placeholder="Enter your name(optional)"
           value={newBoardAuthor}
           onChange={(e) => setNewBoardAuthor(e.target.value)}
         />

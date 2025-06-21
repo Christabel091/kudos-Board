@@ -45,9 +45,7 @@ function App() {
         updated = originalBoards;
         break;
       case "Recent":
-        updated = [...originalBoards].sort(
-          (a, b) => new Date(a.date) - new Date(b.date)
-        );
+        updated = originalBoards.slice(1).slice(-3);
         break;
       case "celeb":
         updated = originalBoards.filter((b) => b.category === "celeb");
@@ -75,9 +73,8 @@ function App() {
               <>
                 <Header />
                 <Nav handleBoardFilter={handleBoardFilter} />
-              {!boards && <div>  <h1> welcome to kudos</h1></div>}
-               {!firstTime ? <div>  <h1></h1></div>: <Body />}
-              {boards.length === 0? <h1>WELCOME  </h1> : <Body />}
+
+              {originalBoards.length === 0  ? <h1>WELCOME  </h1> : <Body />}
                 <Footer />
               </>
             }
