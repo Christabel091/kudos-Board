@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { BoardsContext } from "../App";
 let Form = (props) => {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const BoardsObj = useContext(BoardsContext);
   const [newBoardName, setNewBoardName] = useState("");
   const [newBoardAuthor, setNewBoardAuthor] = useState("");
@@ -30,8 +31,7 @@ let Form = (props) => {
     props.setCanShowForm(false);
     try {
       const response = await fetch(
-        "http://localhost:3000/boards/",
-        // "https://kudos-board-9gir.onrender.com/boards",
+        `${baseUrl}/boards/`,
         {
           method: "POST",
           headers: {

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
 const Card = ({ card, cards, setCards, count, setCount}) => {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const deleteCard = async () => {
     const newCards = cards.filter((thisCard) => thisCard.id != card.id);
     setCards(newCards);
     try {
       const response = await fetch(
-        `http://localhost:3000/boards/cards/${card.id}`,
+        `${baseUrl}/boards/cards/${card.id}`,
         {
           method: "DELETE",
         }
@@ -23,7 +24,7 @@ const Card = ({ card, cards, setCards, count, setCount}) => {
     const updateUpvotes = async (card) => {
       try {
         const response = await fetch(
-          `http://localhost:3000/boards/cards/${card.id}`,
+          `${baseUrl}/boards/cards/${card.id}`,
           {
             method: "PUT",
             headers: {

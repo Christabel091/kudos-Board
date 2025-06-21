@@ -13,14 +13,13 @@ function App() {
   const [boards, setBoards] = useState([]);
   const [firstTime, setFirstTime] = useState(false);
   const [originalBoards, setOriginalBoards] = useState([]);
-
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   // Initialize boards from static data (or fetch later)
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/boards/"
-          // "https://kudos-board-9gir.onrender.com/boards"
+          `${baseUrl}/boards`
         );
         const Boards = await response.json();
         setBoards(Boards);

@@ -19,8 +19,8 @@ const BoardDetail = () => {
     const fetchCards = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/boards/cards/${id}`
-          // `https://kudos-board-9gir.onrender.com/boards/cards/${id}`
+          `${babel}/boards/cards/${id}`
+
         );
         const fetchedCards = await response.json();
         setCards(fetchedCards);

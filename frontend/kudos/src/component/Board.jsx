@@ -2,12 +2,13 @@ import { Link } from "react-router-dom";
 import { BoardsContext } from "../App";
 import { useContext } from "react";
 const Board = ({ board }) => {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const BoardsObj = useContext(BoardsContext);
   let deleteBoard = async () => {
     const newBoard = BoardsObj.boards.filter((curr) => curr.id !== board.id);
     BoardsObj.setBoards(newBoard);
     try {
-      const response = await fetch(`http://localhost:3000/boards/${board.id}`, {
+      const response = await fetch(`${baseUrl}/boards/${board.id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
