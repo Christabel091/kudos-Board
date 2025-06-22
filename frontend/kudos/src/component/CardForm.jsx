@@ -14,7 +14,7 @@ const CardForm = (props) => {
       title: cardTitle,
       description: cardDescription,
       gifUrl: props.selectedGif,
-      upVote: props.count,
+      upVote: 0,
       author: cardAuthor,
     };
     const requiredData = {
@@ -22,7 +22,6 @@ const CardForm = (props) => {
       title: cardTitle,
       description: cardDescription,
       gifUrl: props.selectedGif,
-      upVote: props.count,
     }
     const isEmptyField = Object.values(requiredData).some(
       (val) => typeof val === 'string' && val.trim() === ""

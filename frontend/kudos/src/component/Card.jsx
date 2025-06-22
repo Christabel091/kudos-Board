@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Card = ({ card, cards, setCards, count, setCount}) => {
+const Card = ({ card, cards, setCards}) => {
   const baseUrl = import.meta.env.VITE_BASE_URL;
   const deleteCard = async () => {
     const newCards = cards.filter((thisCard) => thisCard.id != card.id);
@@ -19,7 +19,7 @@ const Card = ({ card, cards, setCards, count, setCount}) => {
   };
   useEffect(() => {
     const formData = {
-      upVote: count
+      upVote: card.upVote,
     };
     const updateUpvotes = async (card) => {
       try {
@@ -42,7 +42,7 @@ const Card = ({ card, cards, setCards, count, setCount}) => {
       } catch (error) {}
     }
     updateUpvotes();
-  }, [count])
+  }, [card.upVote])
 
   return (
     <div className="card-list">
@@ -53,7 +53,8 @@ const Card = ({ card, cards, setCards, count, setCount}) => {
           <p>{card.description}</p>
           <button
             onClick={() => {
-              setCount(count + 1);
+              card.upVote = card.upVote + 1;
+              setCards([...cards]);
             }}
           >
             {"upvote: " + card.upVote}
