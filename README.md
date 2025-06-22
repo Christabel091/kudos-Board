@@ -137,6 +137,9 @@ Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-b
 
 
 [screen recording of kudos-board](https://www.loom.com/embed/fea0bdb38d514fcf9e8cacc1c0777f11?sid=bd4b3109-2caa-484a-be38-a4784e22c87d)
+
+# Contrast checker image
+<img width="941" alt="Screenshot 2025-06-21 at 9 06 21 PM copy" src="https://github.com/user-attachments/assets/15f4e71a-e07e-4e65-8fdf-b6a8fbe314e9" />
 ### Reflection
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
