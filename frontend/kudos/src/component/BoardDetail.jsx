@@ -7,6 +7,7 @@ import { useState } from "react";
 import CardForm from "./CardForm";
 import Card from "./Card";
 const BoardDetail = () => {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const navigate = useNavigate();
   const [cards, setCards] = useState([]);
   const [selectedGif, setSelectedGif] = useState("");
@@ -19,7 +20,7 @@ const BoardDetail = () => {
     const fetchCards = async () => {
       try {
         const response = await fetch(
-          `${babel}/boards/cards/${id}`
+          `${baseUrl}/boards/cards/${id}`
 
         );
         const fetchedCards = await response.json();
@@ -48,7 +49,6 @@ const BoardDetail = () => {
           setCards={setCards}
           selectedGif={selectedGif}
           setSelectedGif={setSelectedGif}
-          count={count}
         />
       )}
       {cards.map((card) => {
@@ -58,8 +58,6 @@ const BoardDetail = () => {
           card={card}
           cards={cards}
           setCards={setCards}
-          count={count}
-          setCount={setCount}
 
           />
 
