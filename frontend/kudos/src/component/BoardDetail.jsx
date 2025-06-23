@@ -41,6 +41,7 @@ const BoardDetail = () => {
       <button onClick={() => navigate("/")} className="x">X</button>
       <h1>{board.Name}</h1>
       <button onClick={createCard} className="create"> Create a card</button>
+      <div className="card-list">
       {canSeeFormCard && (
         <CardForm
           setCanSeeFormCard={setCanSeeFormCard}
@@ -63,6 +64,7 @@ const BoardDetail = () => {
 
         );
       })}
+      </div>
     </div>
   );
 };
