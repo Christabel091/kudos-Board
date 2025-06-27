@@ -45,7 +45,7 @@ const Card = ({ card, cards, setCards}) => {
   }, [card.upVote])
 
   return (
-    <div className="card-list">
+
       <div className="card">
         <div className="card-content">
           <h2 style={{ color: "blue" }}>{card.title}</h2>
@@ -62,7 +62,6 @@ const Card = ({ card, cards, setCards}) => {
           <button onClick={deleteCard}>delete card</button>
         </div>
       </div>
-    </div>
   );
 };
 
